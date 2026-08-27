@@ -5,28 +5,16 @@ Persona 3 FES (SLUS_216.21) ELF or ISO**
 
 ## Features
 
-<<<<<<< HEAD
 - **`word` and `extended` patch types only!!**: Any other pnach type is
   skipped with a warning, never silently misapplied.
 - **Extend ELF to load patches**: The tool extends the
   ELF so that address physically exists in the file.
 - **Relocate some patches**: Addresses below `0x100000` are free/unbacked
-=======
-- **`word` and `extended` patch types only**: any other pnach type is
-  skipped with a warning, never silently misapplied.
-- **Extend ELF to load patches**: The tool extends the
-  ELF so that address physically exists in the file.
-- **Relocate some patches**: addresses below `0x100000` are free/unbacked
->>>>>>> fa07ad9c5d3788d0ab7d6279fa70e6f6225983c8
   kernel RAM at runtime (not present in any file). The tool automatically
   clusters nearby addresses (gap ≤ 16 bytes) into logical code blocks,
   relocates each block into freshly appended ELF space, fixes up internal
   absolute `j`/`jal` instructions, and finds and redirects **every** entry
-<<<<<<< HEAD
   jump into that block even if multiple call sites jump into the same
-=======
-  jump into that block — even if multiple call sites jump into the same
->>>>>>> fa07ad9c5d3788d0ab7d6279fa70e6f6225983c8
   injected code.
 - **Custom code compatibility**: Optional explicit `//CUSTOM CODE START` / `//CUSTOM CODE END` markers are
   still honored if present, to force specific addresses into one block.
@@ -34,7 +22,6 @@ Persona 3 FES (SLUS_216.21) ELF or ISO**
   statically, so the tool skips them and export each one it found instead of
   apply incorrect patch.
 - **Compatible with cheat devices**: This tool protect the mastercode, making it capable to cheat
-<<<<<<< HEAD
 
 ## Usage
 
@@ -59,33 +46,6 @@ Persona 3 FES (SLUS_216.21) ELF or ISO**
 
 #### **Important!!**
 Always test the rebuilt ISO in an emulator before using it on real hardware.
-=======
-- **ISO mode**: can extract a named executable directly from a `.iso`, run it
-  through the same patch pipeline, and dump the full disc contents (with the
-  patched executable substituted in) to a folder — ready to be rebuilt into a
-  proper bootable ISO with CD-DVD GenTool +
-  iml2iso.
-
-## Usage
-
-**Raw ELF:**
-```bash
-dotnet run -- <input.elf> <output.elf> <pnach-file-or-folder> [more...]
-```
-
-**ISO:**
-```bash
-dotnet run -- <input.iso> <output-folder> <elf-name-in-iso> <pnach-file-or-folder> [more...]
-```
-Example:
-```bash
-dotnet run -- game.iso game_patched_folder/ SLUS_216.21 pnach_folder/
-```
-
-After ISO mode finishes, import the output folder into CD-DVD GenTool,
-export as `.IML`, then convert to a final `.iso` with iml2iso. Always test
-the rebuilt ISO in an emulator before using it on real hardware.
->>>>>>> fa07ad9c5d3788d0ab7d6279fa70e6f6225983c8
 
 ## Requirements
 
@@ -96,14 +56,3 @@ the rebuilt ISO in an emulator before using it on real hardware.
 ```bash
 dotnet build
 ```
-<<<<<<< HEAD
-=======
-
-## Disclaimer
-
-This is an unofficial, fan-made tool for personal modding/emulation use.
-*Persona 3 FES* and related names are trademarks of Atlus/Sega. This
-repository contains no game assets, ROM data, or copyrighted game code — only
-original tooling written to manipulate an executable's structure. You are
-responsible for only using this with games you legally own.
->>>>>>> fa07ad9c5d3788d0ab7d6279fa70e6f6225983c8
